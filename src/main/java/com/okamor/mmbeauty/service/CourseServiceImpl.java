@@ -25,17 +25,27 @@ public class CourseServiceImpl implements CourseService{
     }
 
     @Override
-    public void newCourse(Course course) {
-
+    public long newCourse(Course course) {
+        Course newCourse = courseRepository.getCourseByUniqCode(course.getUniqCode());
+        if (newCourse == null) {
+            newCourse = course;
+            newCourse.setUniqCode(newCourse.getUniqCode().toUpperCase());
+            courseRepository.save(newCourse);
+            return courseRepository.getCourseByUniqCode(newCourse.getUniqCode()).getId();
+        } else {
+            return 997;
+        }
     }
 
     @Override
-    public void editCourse(Course course) {
-
+    public Course editCourse(Course course) {
+        return courseRepository.save(course);
     }
 
     @Override
     public void changeCourseStatus(Long id, CourseSatatus status) {
-
+        Course course = courseRepository.getCourseById(id);
+        course.setStatus(status);
+        courseRepository.save(course);
     }
 }

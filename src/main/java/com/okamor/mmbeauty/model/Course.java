@@ -32,7 +32,9 @@ public class Course {
     private int dayAccess;
     private String urlLink;
 
-    private String avaterUrl;
+    private String previewLink;
+
+    private String avatarUrl;
     private double price;
 
     private double discount = 0;

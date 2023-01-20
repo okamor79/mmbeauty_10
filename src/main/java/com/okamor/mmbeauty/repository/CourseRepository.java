@@ -12,4 +12,7 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
 
     @Query("SELECT c FROM Course c WHERE c.id = :id")
     Course getCourseById(@Param("id") long id);
+
+    @Query("SELECT c FROM Course c WHERE c.uniqCode = :code")
+    Course getCourseByUniqCode(@Param("code") String code);
 }

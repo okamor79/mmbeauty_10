@@ -11,9 +11,9 @@ public interface CourseService {
 
     Course getCourseById(Long id);
 
-    void newCourse(Course course);
+    long newCourse(Course course);
 
-    void editCourse(Course course);
+    Course editCourse(Course course);
 
     void changeCourseStatus(Long id, CourseSatatus status);
 }

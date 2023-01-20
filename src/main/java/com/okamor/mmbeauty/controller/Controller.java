@@ -2,6 +2,7 @@ package com.okamor.mmbeauty.controller;
 
 import com.okamor.mmbeauty.model.Client;
 import com.okamor.mmbeauty.model.Course;
+import com.okamor.mmbeauty.model.enums.CourseSatatus;
 import com.okamor.mmbeauty.model.enums.UserStatus;
 import com.okamor.mmbeauty.service.ClientService;
 import com.okamor.mmbeauty.service.CourseService;
@@ -81,9 +82,25 @@ public class Controller {
         return ResponseEntity.accepted().body(course);
     }
 
+    @PostMapping("/course/change_status/{id}/{status}")
+    public void changeCourseStatus(@PathVariable("id") long id, @PathVariable("status")CourseSatatus status) {
+        courseService.changeCourseStatus(id, status);
+    }
+
     @PostMapping("/course/add")
     public ResponseEntity<Void> addNewCourse(@RequestBody Course course) {
-        return null;
+        long newCourse = courseService.newCourse(course);
+        if (newCourse != 997) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatusCode.valueOf((int) newCourse));
+        }
     }
+
+    @PostMapping("/course/edit")
+    public Course modifyCourse(Course course) {
+        return courseService.editCourse(course);
+    }
+
 
 }
