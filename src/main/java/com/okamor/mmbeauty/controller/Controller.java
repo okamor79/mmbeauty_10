@@ -102,5 +102,9 @@ public class Controller {
         return courseService.editCourse(course);
     }
 
+    @GetMapping("/payButton/{id}")
+    public String genPayButton(@PathVariable("id") long id) {
+        return null;
+    }
 
 }
