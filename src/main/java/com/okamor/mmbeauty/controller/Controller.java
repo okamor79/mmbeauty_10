@@ -2,10 +2,12 @@ package com.okamor.mmbeauty.controller;
 
 import com.okamor.mmbeauty.model.Client;
 import com.okamor.mmbeauty.model.Course;
+import com.okamor.mmbeauty.model.Sale;
 import com.okamor.mmbeauty.model.enums.CourseSatatus;
 import com.okamor.mmbeauty.model.enums.UserStatus;
 import com.okamor.mmbeauty.service.ClientService;
 import com.okamor.mmbeauty.service.CourseService;
+import com.okamor.mmbeauty.service.SaleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -13,10 +15,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 @RestController
-@CrossOrigin(maxAge = 36000, allowedHeaders = "*", methods = {RequestMethod.GET, RequestMethod.POST})
+@CrossOrigin(origins = "*", maxAge = 36000, allowedHeaders = "*") //, methods = {RequestMethod.GET, RequestMethod.POST}
+@RequestMapping("/api")
 public class Controller {
 
     @Autowired
@@ -25,6 +30,13 @@ public class Controller {
     @Autowired
     private CourseService courseService;
 
+    @Autowired
+    private SaleService saleService;
+
+    @GetMapping("/")
+    public String getVer() {
+        return "Version 1.0";
+    }
     @GetMapping("/client/list")
     public List<Client> getAllClients() {
         return clientService.getAllClients();
@@ -102,9 +114,14 @@ public class Controller {
         return courseService.editCourse(course);
     }
 
-    @GetMapping("/payButton/{id}")
-    public String genPayButton(@PathVariable("id") long id) {
-        return null;
+    @GetMapping("/payButton/{ClientId}/{id}")
+    public String genPayButton(@PathVariable("ClientId") long clientId, @PathVariable("id") long courseId) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+        return saleService.newOrder(clientId, courseId);
+    }
+
+    @GetMapping("/order/getAllOrders")
+    public Sale getAllOrders() {
+        return saleService.getAllOrders();
     }
 
 }

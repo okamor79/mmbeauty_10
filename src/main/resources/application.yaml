@@ -4,7 +4,7 @@ spring:
     username: root
     password: CoolAdmin77
   jpa:
-      driverClassName: 'com.mysql.cj.jdbc.Driver '
+      driverClassName: 'com.mysql.cj.jdbc.Driver'
       hibernate:
         ddl-auto: update
       properties:
@@ -24,4 +24,3 @@ spring:
             enable: true
 password:
   length: 15
-

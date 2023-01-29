@@ -37,7 +37,7 @@ public class Course {
     private String avatarUrl;
     private double price;
 
-    private double discount = 0;
+    private double discount = 1;
 
     @Enumerated(EnumType.STRING)
     private CourseSatatus status = CourseSatatus.COURSE_ENABLE;
