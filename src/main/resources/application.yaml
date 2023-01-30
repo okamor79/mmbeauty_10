@@ -24,3 +24,5 @@ spring:
             enable: true
 password:
   length: 15
+server:
+  port: 8085

@@ -1,7 +1,7 @@
 package com.okamor.mmbeauty.service;
 
 import com.okamor.mmbeauty.model.Email;
-import jakarta.mail.MessagingException;
+import javax.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;

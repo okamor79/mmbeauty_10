@@ -10,7 +10,7 @@ import com.okamor.mmbeauty.service.CourseService;
 import com.okamor.mmbeauty.service.SaleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
+//import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +20,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "*", maxAge = 36000, allowedHeaders = "*") //, methods = {RequestMethod.GET, RequestMethod.POST}
+@CrossOrigin("*") //, methods = {RequestMethod.GET, RequestMethod.POST}
 @RequestMapping("/api")
 public class Controller {
 
@@ -48,7 +48,7 @@ public class Controller {
         if (registered != 999) {
             return new ResponseEntity<>(HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(HttpStatusCode.valueOf((int) registered));
+            return new ResponseEntity<>(HttpStatus.valueOf((int) registered));
         }
     }
 
@@ -65,7 +65,7 @@ public class Controller {
     @GetMapping("/client/reset/{email}")
     public ResponseEntity<Void> resetPassword(@PathVariable("email") String email) {
         boolean reset = clientService.resetPassword(email);
-        return reset ? new ResponseEntity<>(HttpStatus.OK) : new ResponseEntity<>(HttpStatusCode.valueOf(998));
+        return reset ? new ResponseEntity<>(HttpStatus.OK) : new ResponseEntity<>(HttpStatus.valueOf(998));
     }
 
     @PostMapping("/client/edit")
@@ -105,7 +105,7 @@ public class Controller {
         if (newCourse != 997) {
             return new ResponseEntity<>(HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(HttpStatusCode.valueOf((int) newCourse));
+            return new ResponseEntity<>(HttpStatus.valueOf((int) newCourse));
         }
     }
 

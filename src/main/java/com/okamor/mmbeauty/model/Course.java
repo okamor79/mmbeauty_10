@@ -1,7 +1,7 @@
 package com.okamor.mmbeauty.model;
 
 import com.okamor.mmbeauty.model.enums.CourseSatatus;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 

@@ -1,7 +1,7 @@
 package com.okamor.mmbeauty.service;
 
 import com.okamor.mmbeauty.model.Email;
-import jakarta.mail.MessagingException;
+import javax.mail.MessagingException;
 
 public interface EmailService {
 
@@ -9,5 +9,5 @@ public interface EmailService {
 
     String sendMailWhithAttachment(Email details);
 
-    void sendMailHTMLFormat(Email email) throws MessagingException;
+    void sendMailHTMLFormat(Email email);
 }
